@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoFlash - Notícias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>InfoFlash</h1>
+    </header>
+
+    <main>
+        <h2>Últimas Notícias</h2>
+        <div id="noticias"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 InfoFlash - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para carregar as notícias do arquivo JSON
+        async function carregarNoticias() {
+            const response = await fetch('posts.json');
+            const data = await response.json();
+            const noticiasContainer = document.getElementById('noticias');
+
+            data.posts.forEach(post => {
+                // Criando o botão para cada post
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('post');
+                const link = document.createElement('a');
+                link.href = post.URL;
+                link.classList.add('btn');
+                link.innerText = post.Nome;
+                
+                // Adicionando o link ao contêiner de notícias
+                postDiv.appendChild(link);
+                noticiasContainer.appendChild(postDiv);
+            });
+        }
+
+        // Carregar as notícias ao carregar a página
+        carregarNoticias();
+    </script>
+</body>
+</html>
