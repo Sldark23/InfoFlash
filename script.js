@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('notícias/')
+    fetch('notícias')
     .then(response => response.text())
     .then(data => {
         let parser = new DOMParser();
